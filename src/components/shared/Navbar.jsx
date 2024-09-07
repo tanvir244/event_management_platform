@@ -1,4 +1,5 @@
 "use client"
+import { signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useState } from 'react';
@@ -8,6 +9,13 @@ const Navbar = () => {
     const [category, setCategory] = useState(false);
     const [profilee, setProfilee] = useState(false);
     
+    const { data: session } = useSession();
+    const name = session?.user?.name;
+    const email = session?.user?.email;
+    const profile = session?.user?.profile;
+    const image = session?.user?.image;
+    console.log(session);
+    console.log(name, email, profile);
 
     return (
         <div className='relative bg-[#001427] p-6'>
@@ -44,8 +52,7 @@ const Navbar = () => {
                                     className="w-[50px] h-[50px] overflow-hidden rounded-full cursor-pointer"
                                 >
                                     <Image
-                                        // src={session ? profile || image : 'https://i.ibb.co/TmsrwQs/user.png'}
-                                        src='https://i.ibb.co/TmsrwQs/user.png'
+                                        src={session ? profile || image : 'https://i.ibb.co/TmsrwQs/user.png'}
                                         alt='okay'
                                         width={50}
                                         height={50}
@@ -54,7 +61,7 @@ const Navbar = () => {
                                 </div>
                             </div>
                             <ul style={{ zIndex: 1 }} className={`absolute right-[38px] md:right-[40px] lg:right-[160px] bottom-[-116px] w-[210px] bg-[#001427] rounded-md px-4 py-4 text-white text-sm ${profilee ? 'block' : 'hidden'}`}>
-                                {/* {
+                                {
                                     session ? (
                                         <>
                                             <Link href={'/dashboard'}>
@@ -74,11 +81,11 @@ const Navbar = () => {
                                             </Link>
                                         </>
                                     )
-                                } */}
+                                }
 
-                                <Link href={'/login'}><li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Login</li></Link>
+                                {/* <Link href={'/login'}><li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Login</li></Link>
                                 <Link href={'/register'}><li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Register</li></Link>
-                                <Link href={'/dashboard'}><li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Dashboard</li></Link>
+                                <Link href={'/dashboard'}><li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Dashboard</li></Link> */}
                             </ul>
                         </div>
                     </div>

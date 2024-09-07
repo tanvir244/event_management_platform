@@ -6,6 +6,7 @@ import React from 'react';
 import { FaGithub } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 import Swal from 'sweetalert2';
+import SocialSignIn from '../shared/SocialSignIn';
 
 const img_hosting_key = process.env.NEXT_PUBLIC_IMG_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
@@ -108,12 +109,7 @@ const Register = () => {
                 registerErr && <p className="text-red-600 font-semibold mt-4 text-center">{registerErr}</p>
             } */}
                 </form>
-                <button onClick={() => handleSocialLogin('google')} className='w-full bg-gray-400 hover:bg-gray-500 flex justify-center items-center gap-2 py-2 text-center text-3xl text-black mt-12 cursor-pointer'>
-                    <FcGoogle /> <span className='text-lg'>Sign In with Google</span>
-                </button>
-                <button onClick={() => handleSocialLogin('github')} className='w-full bg-gray-400 hover:bg-gray-500 flex justify-center items-center mb-6 gap-2 py-2 text-center text-3xl text-black mt-2 cursor-pointer'>
-                    <FaGithub /> <span className='text-lg'>Sign In with Github</span>
-                </button>
+                <SocialSignIn />
                 <p className='mt-4'>Already registered ? please <Link href={'/login'} className='text-green-500'>Login</Link></p>
             </div>
         </div>

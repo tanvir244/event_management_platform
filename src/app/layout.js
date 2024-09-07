@@ -1,5 +1,6 @@
 import Navbar from "@/components/shared/Navbar";
 import "./globals.css";
+import AuthProvider from "@/providers/authProvider";
 
 export const metadata = {
   title: "Create Next App",
@@ -10,8 +11,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
+        <AuthProvider>
+          <Navbar />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

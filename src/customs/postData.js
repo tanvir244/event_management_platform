@@ -8,3 +8,14 @@ export const postData = async (newUser) => {
     })
     return response;
 }
+
+export const postRegisterSocial = async (newUser) => {
+    const response = await fetch("http://localhost:3000/api/post_register_social", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+    })
+    return response;
+}
