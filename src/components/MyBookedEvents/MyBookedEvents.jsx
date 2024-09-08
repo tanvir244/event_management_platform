@@ -3,13 +3,19 @@ import React, { useEffect, useState } from 'react';
 import EventCart from '../EventListing/EventCart';
 import { useSession } from 'next-auth/react';
 import { getBookedId } from '@/customs/getData';
+import { useRouter } from 'next/navigation';
 
 const MyBookedEvents = () => {
-    const { data: session } = useSession();
+    const router = useRouter();
+    const { data: session, status } = useSession();
     const currentUser = session?.user?.email;
     const [bookedIds, setBookedIds] = useState([]);
     const [bookedEvents, setBookedEvents] = useState([]);
     console.log(bookedIds);
+
+    if(status === 'unauthenticated'){
+        router.push('/login');
+    }
 
     // fetch all my booked ID
     useEffect(() => {

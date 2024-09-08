@@ -17,6 +17,13 @@ const Navbar = () => {
     console.log(session);
     console.log(name, email, profile);
 
+    const offCategory = () => {
+        setCategory(false)
+    }
+    const offProfile = () => {
+        setProfilee(false)
+    }
+
     return (
         <div className='relative bg-[#001427] p-6'>
             <div className='flex flex-col lg:flex-row gap-[24px] lg:gap-0 justify-between items-center max-w-6xl mx-auto'>
@@ -34,19 +41,20 @@ const Navbar = () => {
                                     <FaAnglesDown />
                                 </span>
                             </li>
+                            <li><Link href={'/my_booked_events'}>Booked Events</Link></li>
                         </ul>
                         <ul className={`absolute left-[70px] md:left-[130px] lg:left-[580px] bottom-[-150px] w-[210px] bg-[#001427] rounded-md px-4 py-4 text-white text-sm ${category ? 'block' : 'hidden'}`}>
-                            <li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/conferences'}>Conferences</Link></li>
-                            <li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/workshops'}>Workshops</Link></li>
-                            <li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/concerts'}>Concerts</Link></li>
+                            <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/conferences'}>Conferences</Link></li>
+                            <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/workshops'}>Workshops</Link></li>
+                            <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/concerts'}>Concerts</Link></li>
                         </ul>
                     </div>
                     <div className='w-full md:w-1/2 flex justify-center'>
                         <div className=''>
                             <div className='flex items-center gap-4'>
-                                <div>
+                                {/* <div>
                                     <input type="text" className='w-[230px] py-2 px-3 rounded-lg border-2 border-gray-300' placeholder='Search events' />
-                                </div>
+                                </div> */}
                                 <div
                                     onClick={() => setProfilee(!profilee)}
                                     className="w-[50px] h-[50px] overflow-hidden rounded-full cursor-pointer"
@@ -65,27 +73,23 @@ const Navbar = () => {
                                     session ? (
                                         <>
                                             <Link href={'/dashboard'}>
-                                                <li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Dashboard</li>
+                                                <li onClick={offProfile} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Dashboard</li>
                                             </Link>
                                             <Link onClick={() => signOut()} href={''}>
-                                                <li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Logout</li>
+                                                <li onClick={offProfile} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Logout</li>
                                             </Link>
                                         </>
                                     ) : (
                                         <>
                                             <Link href={'/login'}>
-                                                <li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Login</li>
+                                                <li onClick={offProfile} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Login</li>
                                             </Link>
                                             <Link href={'/register'}>
-                                                <li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Register</li>
+                                                <li onClick={offProfile} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Register</li>
                                             </Link>
                                         </>
                                     )
                                 }
-
-                                {/* <Link href={'/login'}><li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Login</li></Link>
-                                <Link href={'/register'}><li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Register</li></Link>
-                                <Link href={'/dashboard'}><li className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Dashboard</li></Link> */}
                             </ul>
                         </div>
                     </div>
