@@ -27,7 +27,7 @@ const Navbar = () => {
                     <div className='w-full md:w-1/2 flex justify-center'>
                         <ul className='flex gap-8 text-sm font-semibold cursor-pointer'>
                             <li><Link href={'/'}>Home</Link></li>
-                            <li><Link href={'/events_list'}>Event Listing</Link></li>
+                            <li><Link href={'/event_listing'}>Event Listing</Link></li>
                             <li onClick={() => setCategory(!category)} className='flex gap-1 items-center'>
                                 <span>Category</span>
                                 <span className='text-[#737373] text-xs'>
