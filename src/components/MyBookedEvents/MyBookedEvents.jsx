@@ -51,7 +51,7 @@ const MyBookedEvents = () => {
 
     return (
         <div className='bg-[bg-[#D7DCDD]]'>
-            <div className="max-w-6xl mx-auto py-12">
+            <div className="w-[90%] md:max-w-6xl mx-auto py-12">
                 <h1 className="text-5xl font-bold text-center mb-16">My Booked Events</h1>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                     {

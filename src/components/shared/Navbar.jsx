@@ -41,12 +41,12 @@ const Navbar = () => {
                                     <FaAnglesDown />
                                 </span>
                             </li>
-                            <li><Link href={'/my_booked_events'}>Booked Events</Link></li>
+                            <li><Link href={'/my_booked_events'}>My Booked List</Link></li>
                         </ul>
                         <ul className={`absolute left-[70px] md:left-[130px] lg:left-[580px] bottom-[-150px] w-[210px] bg-[#001427] rounded-md px-4 py-4 text-white text-sm ${category ? 'block' : 'hidden'}`}>
-                            <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/conferences'}>Conferences</Link></li>
-                            <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/workshops'}>Workshops</Link></li>
-                            <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/concerts'}>Concerts</Link></li>
+                            <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/Conferences'}>Conferences</Link></li>
+                            <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/Workshops'}>Workshops</Link></li>
+                            <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/Concerts'}>Concerts</Link></li>
                         </ul>
                     </div>
                     <div className='w-full md:w-1/2 flex justify-center'>

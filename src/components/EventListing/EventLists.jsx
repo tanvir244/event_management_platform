@@ -67,10 +67,6 @@ const EventLists = () => {
             setShowData(sortByDate);
             console.log(sortByDate);
         }
-        else if (sortType === "rating") {
-            const sortByRating = [...showData].sort((a, b) => b.ratings - a.ratings);
-            setShowData(sortByRating);
-        }
     };
 
     return (
@@ -89,7 +85,6 @@ const EventLists = () => {
                             Sort
                         </option>
                         <option value="latest">Latest</option>
-                        <option value="rating">Rating</option>
                     </select>
                     <div className="text-white flex rounded-xl w-[260px] cursor-pointer">
                         <span onClick={() => setOpenClose(!openClose)} className="bg-gray-600 w-[60%] p-3 flex items-center gap-4"><span>Select</span> <FaArrowDown /></span>
@@ -99,9 +94,9 @@ const EventLists = () => {
                         <div className="flex flex-col gap-2">
                             <select onChange={(e) => setCategFilter(e.target.value)} className="bg-black py-2 px-6 text-white rounded-lg">
                                 <option value="" disabled selected>Category</option>
-                                <option value="conferences">Conferences</option>
-                                <option value="workshops">Workshops</option>
-                                <option value="concerts">Concerts</option>
+                                <option value="Conferences">Conferences</option>
+                                <option value="Workshops">Workshops</option>
+                                <option value="Concerts">Concerts</option>
                             </select>
                             <select onChange={(e) => setLocatFilter(e.target.value)} className="bg-black py-2 px-6 text-white rounded-lg">
                                 <option value="" disabled selected>Location</option>

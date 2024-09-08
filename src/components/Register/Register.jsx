@@ -3,8 +3,6 @@ import { postData } from '@/customs/postData';
 import axios from 'axios';
 import Link from 'next/link';
 import React from 'react';
-import { FaGithub } from 'react-icons/fa6';
-import { FcGoogle } from 'react-icons/fc';
 import Swal from 'sweetalert2';
 import SocialSignIn from '../shared/SocialSignIn';
 import { signIn } from 'next-auth/react';
@@ -32,7 +30,7 @@ const Register = () => {
             const profile = imgRes?.data?.data?.display_url;
 
             // Register data with profile image url
-            const newUser = { name, email, password, profile }
+            const newUser = { status: 'user', name, email, password, profile }
 
             // Send the newUser data to backend
             const response = await postData(newUser);
@@ -47,10 +45,6 @@ const Register = () => {
                 });
                 event.target.reset();
             }
-
-            // if you want to see the response in console
-            // const result = await response.json();
-            // console.log(result);
 
             // now social signed in 
             const resp = await signIn("credentials", {

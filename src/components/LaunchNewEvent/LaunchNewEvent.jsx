@@ -82,9 +82,9 @@ const LaunchNewEvent = () => {
                         <label>Category</label>
                         <select value={categ} onChange={(e) => setCateg(e.target.value)} className='text-black py-2 px-4 rounded-lg'>
                             <option value="" disabled>select category</option>
-                            <option value="conferences">Conferences</option>
-                            <option value="workshops">Workshops</option>
-                            <option value="concerts">Concerts</option>
+                            <option value="Conferences">Conferences</option>
+                            <option value="Workshops">Workshops</option>
+                            <option value="Concerts">Concerts</option>
                         </select>
                     </div>
                 </div>
