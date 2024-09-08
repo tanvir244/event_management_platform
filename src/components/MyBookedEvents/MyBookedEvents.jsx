@@ -2,42 +2,58 @@
 import React, { useEffect, useState } from 'react';
 import EventCart from '../EventListing/EventCart';
 import { useSession } from 'next-auth/react';
-import { getBookedEvents } from '@/customs/getData';
+import { getBookedId } from '@/customs/getData';
 
 const MyBookedEvents = () => {
     const { data: session } = useSession();
     const currentUser = session?.user?.email;
-    const [bookedId, setBookedId] = useState([]);
-    const [bookedEvent, setBookedEvent] = useState([]);
-    console.log(bookedId);
+    const [bookedIds, setBookedIds] = useState([]);
+    const [bookedEvents, setBookedEvents] = useState([]);
+    console.log(bookedIds);
 
     // fetch all my booked ID
     useEffect(() => {
-        fetch(`http://localhost:3000/api/get_booking_events/${currentUser}`)
-        .then(res => res.json())
-        .then(data => setBookedId(data));
+        const fetchBookedId = async (currentUser) => {
+            const response = await getBookedId(currentUser);
+            setBookedIds(response);
+        }
+        fetchBookedId(currentUser);
     }, [currentUser])
-    console.log(bookedId);
 
-    // fetching all my booked events
+    // Fetch all booked events based on booked IDs
     useEffect(() => {
-        const mapping = bookedId.map(event => (
-            fetch(`http://localhost:3000/api/single_event/${event.id}`)
-            .then(res => res.json())
-            .then(data => setBookedEvent(...bookedEvent))
-        ))
-    }, [bookedEvent, bookedId])
+        if (bookedIds.length > 0) {
+            const fetchedEvents = async () => {
+                try {
+                    const eventsData = await Promise.all(
+                        bookedIds.map(async (event) => {
+                            const res = await fetch(`http://localhost:3000/api/single_event/${event.eventId}`);
+                            const data = await res.json();
+                            return data;
+                        })
+                    );
+                    setBookedEvents(eventsData);
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+            fetchedEvents();
+        }
+    }, [bookedIds])
 
-    console.log(bookedEvent);
+    console.log(bookedEvents);
 
     return (
-        <div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                {/* {
-                    bookedId.map((event, index) => (
-                        <EventCart key={index} event={event} />
-                    ))
-                } */}
+        <div className='bg-[bg-[#D7DCDD]]'>
+            <div className="max-w-6xl mx-auto py-12">
+                <h1 className="text-5xl font-bold text-center mb-16">My Booked Events</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    {
+                        bookedEvents.map((event, index) => (
+                            <EventCart key={index} event={event} />
+                        ))
+                    }
+                </div>
             </div>
         </div>
     );

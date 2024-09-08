@@ -29,6 +29,7 @@ const page = async ({ params }) => {
                     <h3 className='text-xl lg:text-2xl flex flex-col gap-2'><FaLocationDot /> <span className='font-bold'>{location}</span></h3>
                     <h3 className='text-xl lg:text-2xl flex flex-col gap-2'><HiMiniCurrencyDollar /> <span className='font-bold text-lg md:text-lg lg:text-2xl'>{price}</span></h3>
                     <h3 className='text-xl lg:text-2xl flex flex-col gap-2'><FaHashtag /> <span className='font-bold text-lg md:text-lg lg:text-2xl'>{category}</span></h3>
+                    {/* clicked booking button  */}
                     <Booking eventId={params.id} />
                 </div>
                 <div className='bg-[#001427] rounded-xl px-12 py-8 text-white pb-12 mb-6'>

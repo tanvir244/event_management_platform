@@ -7,5 +7,5 @@ export const getSingleData = async (id) => {
 export const getBookedId = async (currentUser) => {
     const res = await fetch(`http://localhost:3000/api/get_booking_events/${currentUser}`)
     const data = res.json();
-    return data; 
+    return data;
 }

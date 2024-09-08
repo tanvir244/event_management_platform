@@ -7,7 +7,7 @@ export const POST = async (request) => {
         const bookingCollection = db.collection('bookedEvents');
 
         // Check if the event is already booked
-        const exist = await bookingCollection.findOne({ userEmail: bookingEvent.userEmail, id: bookingEvent.id });
+        const exist = await bookingCollection.findOne({ userEmail: bookingEvent.userEmail, eventId: bookingEvent.eventId });
         if (exist) {
             // Event is already booked by this user
             return new Response(JSON.stringify({ message: "Event already exists" }), { status: 304 });
