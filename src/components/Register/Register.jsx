@@ -7,11 +7,14 @@ import { FaGithub } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 import Swal from 'sweetalert2';
 import SocialSignIn from '../shared/SocialSignIn';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 
 const img_hosting_key = process.env.NEXT_PUBLIC_IMG_HOSTING_KEY;
 const img_hosting_api = `https://api.imgbb.com/1/upload?key=${img_hosting_key}`;
 
 const Register = () => {
+    const router = useRouter();
 
     const handleRegister = async (event) => {
         event.preventDefault();
@@ -57,18 +60,18 @@ const Register = () => {
             });
 
             console.log(resp.status === 200);
-            // if (resp.status === 200) {
-            //     Swal.fire({
-            //         position: "top-end",
-            //         icon: "success",
-            //         title: "Registratoin Successfull !",
-            //         showConfirmButton: false,
-            //         timer: 1500
-            //     });
-            //     router.push('/');
-            // } else {
-            //     console.log('Login failed', resp);
-            // }
+            if (resp.status === 200) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Registratoin Successfull !",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                router.push('/');
+            } else {
+                console.log('Login failed', resp);
+            }
 
         } catch (error) {
             console.error("Registration faild", error);

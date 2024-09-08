@@ -9,3 +9,9 @@ export const getBookedId = async (currentUser) => {
     const data = res.json();
     return data;
 }
+
+export const getComments = async (postId) => {
+    const res = await fetch(`http://localhost:3000/api/get_comments/${postId}`)
+    const data = res.json();
+    return data;
+}

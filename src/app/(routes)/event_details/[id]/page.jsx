@@ -6,14 +6,14 @@ import { MdAccessTimeFilled } from "react-icons/md";
 import { HiMiniCurrencyDollar } from "react-icons/hi2";
 import { getSingleData } from '@/customs/getData';
 import Booking from '@/components/shared/Booking';
+import Comments from '@/components/Comments/Comments';
 
 
 const page = async ({ params }) => {
     console.log(params);
     const expectedEvent = await getSingleData(params.id);
     // console.log(expectedEvent);
-    const { name, date, time, category, location, price, eventImage, description } = expectedEvent;
-
+    const { _id, name, date, time, category, location, price, eventImage, description } = expectedEvent;
 
     return (
         <div className=''>
@@ -35,31 +35,8 @@ const page = async ({ params }) => {
                 <div className='bg-[#001427] rounded-xl px-12 py-8 text-white pb-12 mb-6'>
                     <div contentEditable='false' dangerouslySetInnerHTML={{ __html: description }}></div>
                 </div>
-                <div>
-                    <h1 className='text-lg font-bold mb-4'>Comments</h1>
-                    <div className='border-b border-black mb-2'>
-                        <input type="text" className='w-full text-lg font-semibold py-2 px-4' />
-                    </div>
-                    <div className='flex justify-end'>
-                        <button className='btn bg-[#001427] py-2 px-4 rounded-xl text-white'>send</button>
-                    </div>
-                    <div className='flex flex-col md:flex-row gap-2 md:gap-8'>
-                        <div>
-                            <Image
-                                src="https://i.ibb.co/Srzp6qk/01-unsplash.png"
-                                alt='user'
-                                width={90}
-                                height={90}
-                                objectFit='cover'
-                                className='rounded-full'
-                            />
-                        </div>
-                        <div>
-                            <h1 className='text-xl mb-2 font-bold'>Tanvir Rahman</h1>
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consectetur, modi provident voluptas porro temporibus eaque repellat dolore. Recusandae in modi error optio ex, dolorem incidunt laborum, facilis eius soluta odit?</p>
-                        </div>
-                    </div>
-                </div>
+                {/* user comment section  */}
+                <Comments postId={_id} />
             </div>
         </div>
     );

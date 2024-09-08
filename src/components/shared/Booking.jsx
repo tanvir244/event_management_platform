@@ -67,7 +67,7 @@ const Booking = ({ eventId }) => {
     }
 
     return (
-        <button onClick={handleBooking} className='btn bg-green-600 text-white flex items-center gap-4 py-4 px-6 text-xl rounded-2xl hover:bg-white hover:text-black'><span className='text-2xl'><FaBookmark /></span>{booked ? 'Booked' : 'Book'}</button>
+        <button onClick={handleBooking} className={`btn bg-green-600 text-white flex items-center gap-2 py-4 px-6 text-xl rounded-2xl hover:bg-white hover:text-black ${booked && 'bg-red-600'}`}><span className='text-2xl'><FaBookmark /></span>{booked ? 'Booked' : 'Book'}</button>
     );
 };
 

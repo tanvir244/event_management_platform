@@ -30,3 +30,14 @@ export const bookingEvent = async (bookingInfo) => {
     })
     return response;
 }
+
+export const postComments = async (newComment) => {
+    const response = await fetch('http://localhost:3000/api/post_comments', {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newComment),
+    })
+    return response;
+}
