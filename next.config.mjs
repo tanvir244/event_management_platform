@@ -22,6 +22,16 @@ const nextConfig = {
       },
     ],
   },
+  async redirects() {
+    return [
+      // Remove or modify the rule for /dashboard
+      // {
+      //   source: '/dashboard',
+      //   destination: '/dashboard/launch_event_form',
+      //   permanent: true,
+      // },
+    ];
+  },
 };
 
 export default nextConfig;

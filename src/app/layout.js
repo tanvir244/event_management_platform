@@ -11,7 +11,7 @@ import { usePathname } from "next/navigation";
 
 export default function RootLayout({ children }) {
   const pathname = usePathname();
-  const showNavbar = pathname !== "/dashboard";
+  const showNavbar = pathname !== "/dashboard" && pathname !== "/dashboard/launch_event_form";
 
   return (
     <html lang="en">

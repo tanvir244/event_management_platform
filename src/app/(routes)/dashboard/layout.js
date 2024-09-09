@@ -1,4 +1,6 @@
 import AuthProvider from "@/providers/authProvider";
+import Link from "next/link";
+// import Link from "next/link";
 
 export const metadata = {
     title: "Create Next App",
@@ -14,16 +16,17 @@ export default function DashboardLayout({ children }) {
                     <div className="flex min-h-screen">
                         {/* Sidebar */}
                         <div className="w-[280px] bg-[#001427] h-screen sticky top-0 overflow-y-auto flex-shrink-0">
-                            <h1 className="text-white font-bold text-4xl text-center py-6">Dashboard</h1>
-                            {/* Sidebar content like buttons or links */}
+                            <h1 className="text-white font-bold text-4xl text-center py-6 mb-4">Dashboard</h1>
                             <ul>
-                                <li className="py-2 px-4 hover:bg-[#0a2839]">
-                                    <a href="/dashboard">Dashboard</a>
-                                </li>
-                                <li className="py-2 px-4 hover:bg-[#0a2839]">
-                                    <a href="/dashboard/settings">Settings</a>
-                                </li>
-                                {/* Add more links */}
+                                <Link href="/dashboard" className="block py-2 px-4 hover:bg-[#0a2839] text-white font-semibold">
+                                    Home
+                                </Link>
+                                <Link href="/dashboard/all_users" className="block py-2 px-4 hover:bg-[#0a2839] text-white font-semibold">
+                                    All Users
+                                </Link>
+                                <Link href="/dashboard/launch_event_form" className="block py-2 px-4 hover:bg-[#0a2839] text-white font-semibold">
+                                    Launch New Event
+                                </Link>
                             </ul>
                         </div>
                         {/* Main Content */}

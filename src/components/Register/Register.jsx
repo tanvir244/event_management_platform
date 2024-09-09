@@ -30,7 +30,7 @@ const Register = () => {
             const profile = imgRes?.data?.data?.display_url;
 
             // Register data with profile image url
-            const newUser = { status: 'user', name, email, password, profile }
+            const newUser = { name, email, password, profile }
 
             // Send the newUser data to backend
             const response = await postData(newUser);

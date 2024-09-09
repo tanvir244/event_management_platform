@@ -72,8 +72,8 @@ const Navbar = () => {
                                 {
                                     session ? (
                                         <>
-                                            <Link href={'/dashboard'}>
-                                                <li onClick={offProfile} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Dashboard</li>
+                                            <Link href={'/launch_event_form'}>
+                                                <li onClick={offProfile} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Launch New Event</li>
                                             </Link>
                                             <Link onClick={() => signOut()} href={''}>
                                                 <li onClick={offProfile} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'>Logout</li>

@@ -15,3 +15,9 @@ export const getComments = async (postId) => {
     const data = res.json();
     return data;
 }
+
+export const getDataByCategory = async (category) => {
+    const res = await fetch(`http://localhost:3000/api/get_events_by_category/${category}`)
+    const data = res.json();
+    return data;
+}

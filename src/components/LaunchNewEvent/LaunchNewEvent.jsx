@@ -17,6 +17,7 @@ const LaunchNewEvent = () => {
     const [categ, setCateg] = useState('');
     const [locat, setLocat] = useState('');
 
+
     const handleForm = async (event) => {
         event.preventDefault();
         const form = event.target;
