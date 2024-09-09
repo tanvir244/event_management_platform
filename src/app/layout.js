@@ -1,8 +1,8 @@
 "use client"
 import Navbar from "@/components/shared/Navbar";
 import "./globals.css";
-import AuthProvider from "@/providers/authProvider";
 import { usePathname } from "next/navigation";
+import AuthProvider from "@/providers/AuthProvider";
 
 // export const metadata = {
 //   title: "Create Next App",
