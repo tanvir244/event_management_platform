@@ -15,8 +15,6 @@ const CategoryByEvents = ({category}) => {
         } 
         fetchedData(category);
     }, [category])
-     
-    
 
     return (
         <div className="max-w-6xl mx-auto py-12">

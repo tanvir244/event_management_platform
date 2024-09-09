@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/connectDB"
+import { NextResponse } from "next/server";
 
 export const GET = async (response) => {
     try {
@@ -6,8 +7,8 @@ export const GET = async (response) => {
         const allEventsCollection = db.collection('allEvents');
         const allEvents = await allEventsCollection.find().toArray();
         // return data 
-        return new Response(JSON.stringify(allEvents), {status: 200});
+        return new NextResponse(JSON.stringify(allEvents), {status: 200});
     } catch (error) {
-        return Response.json({message: 'something went wrong'}, {status: 500});
+        return NextResponse.json({message: 'something went wrong'}, {status: 500});
     }
 }

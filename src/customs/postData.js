@@ -1,5 +1,5 @@
 export const postData = async (newUser) => {
-    const response = await fetch("http://localhost:3000/api/post_register", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post_register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -10,7 +10,7 @@ export const postData = async (newUser) => {
 }
 
 export const postNewEvent = async (newEvnet) => {
-    const response = await fetch('http://localhost:3000/api/post_all_events', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post_all_events`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -21,7 +21,7 @@ export const postNewEvent = async (newEvnet) => {
 }
 
 export const bookingEvent = async (bookingInfo) => {
-    const response = await fetch('http://localhost:3000/api/booking_event', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/booking_event`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -32,7 +32,7 @@ export const bookingEvent = async (bookingInfo) => {
 }
 
 export const postComments = async (newComment) => {
-    const response = await fetch('http://localhost:3000/api/post_comments', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post_comments`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",

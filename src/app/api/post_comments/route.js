@@ -1,4 +1,5 @@
 import { connectDB } from "@/lib/connectDB"
+import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
     try {
@@ -6,8 +7,8 @@ export const POST = async (request) => {
         const db = await connectDB();
         const commentCollection = db.collection('allComments');
         const allComments = await commentCollection.insertOne(newComment);
-        return new Response(JSON.stringify({ message: 'Comment added successfully' }), { status: 200 });  
+        return new NextResponse(JSON.stringify({ message: 'Comment added successfully' }), { status: 200 });  
     } catch (error) {
-        return new Response(JSON.stringify({ error: error.message }), { status: 500 });
+        return new NextResponse(JSON.stringify({ error: error.message }), { status: 500 });
     }
 } 

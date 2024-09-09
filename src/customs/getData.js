@@ -1,23 +1,43 @@
 export const getSingleData = async (id) => {
-    const res = await fetch(`http://localhost:3000/api/single_event/${id}`)
-    const data = res.json();
-    return data;
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/single_event/${id}`);
+        const data = res.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
 }
 
 export const getBookedId = async (currentUser) => {
-    const res = await fetch(`http://localhost:3000/api/get_booking_events/${currentUser}`)
-    const data = res.json();
-    return data;
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get_booking_events/${currentUser}`);
+        const data = res.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
 }
 
 export const getComments = async (postId) => {
-    const res = await fetch(`http://localhost:3000/api/get_comments/${postId}`)
-    const data = res.json();
-    return data;
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get_comments/${postId}`);
+        const data = res.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
 }
 
 export const getDataByCategory = async (category) => {
-    const res = await fetch(`http://localhost:3000/api/get_events_by_category/${category}`)
-    const data = res.json();
-    return data;
+    try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get_events_by_category/${category}`);
+        const data = res.json();
+        return data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
 }
