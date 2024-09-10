@@ -14,7 +14,7 @@ const EventLists = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://event-management-platform-iota.vercel.app/api/get_all_events');
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get_all_events`);
                 const data = await response.json();
                 setEventsData(data);
                 setShowData(data);
