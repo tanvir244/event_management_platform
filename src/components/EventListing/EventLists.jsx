@@ -85,27 +85,7 @@ const EventLists = () => {
     
         setShowData(filteredData);
     };
-    
 
-    // const filterData = async (categ, locat) => {
-    //     let filteredData;
-
-    //     if (categ && locat) {
-    //         const resCateg = await getDataByCategory(categ);
-    //         const resLocat = await getDataByLocation(locat);
-            
-    //         const matchedCateg = resCateg.filter(item => item.category === categ);
-    //         const checkBoth = matchedCateg.filter(item => item.location === locat);
-    //         filteredData = checkBoth;
-    //     } else if (categ) {
-    //         const resCateg = await getDataByCategory(categ);
-    //         filteredData = resCateg.filter(item => item.category === categ);
-    //     } else if (locat) {
-    //         const resLocat = await getDataByLocation(locat);
-    //         filteredData = resLocat.filter(item => item.location === locat);
-    //     }
-    //     setShowData(filteredData);
-    // };
 
     const sortedData = (sortType) => {
         if (sortType === "latest") {
@@ -145,7 +125,7 @@ const EventLists = () => {
                     </select>
                     <div className="text-white flex rounded-xl w-[260px] cursor-pointer">
                         <span onClick={() => setOpenClose(!openClose)} className="bg-gray-600 w-[60%] p-3 flex items-center gap-4"><span>Select</span> <FaArrowDown /></span>
-                        <span onClick={() => filterData(databyCateg, databyLocat)} className="bg-black w-[40%] p-3 cursor-pointer hover:bg-[#001427]">Filter</span>
+                        <span onClick={() => filterData(categFilter, locatFilter)} className="bg-black w-[40%] p-3 cursor-pointer hover:bg-[#001427]">Filter</span>
                     </div>
                     <div className={`absolute  top-[60px] right-[95px] bg-gray-600 py-4 px-2 ${openClose ? 'block' : 'hidden'}`} style={{ zIndex: 10 }}>
                         <div className="flex flex-col gap-2">
