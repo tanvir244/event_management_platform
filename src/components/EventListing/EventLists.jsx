@@ -8,7 +8,6 @@ const EventLists = () => {
     // pagination
     const [currentPage, setCurrentPage] = useState(1);
 
-
     // =======
     const [eventsData, setEventsData] = useState([]);
     const [showData, setShowData] = useState([]);
@@ -37,22 +36,6 @@ const EventLists = () => {
     }, [currentPage])
 
 
-    // fetch data by location and category 
-    useEffect(() => {
-        const fetchByLocatCateg = async () => {
-            const resCateg = await getDataByCategory(categFilter);
-            setDataByCateg(resCateg);
-        }
-        const fetchByLocatLocat = async () => {
-            const resLocat = await getDataByLocation(locatFilter);
-            setDataByLocat(resLocat);
-        }
-
-        fetchByLocatCateg(categFilter);
-        fetchByLocatCateg(locatFilter);
-    }, [categFilter, locatFilter])
-
-
     useEffect(() => {
         if (!search) {
             setShowData(eventsData);
@@ -71,18 +54,23 @@ const EventLists = () => {
 
     }, [eventsData, search, showData])
 
-    const filterData = (categ, locat) => {
-        let filteredData = eventsData;
+    const filterData = async (categ, locat) => {
+        let filteredData;
 
         if (categ && locat) {
-            const sameCategory = eventsData.filter(item => item.category === categ);
-            filteredData = sameCategory.filter(item => item.location === locat);
+            const resCateg = await getDataByCategory(categ);
+            const resLocat = await getDataByLocation(locat);
+            
+            const matchedCateg = resCateg.filter(item => item.category === categ);
+            const checkBoth = matchedCateg.filter(item => item.location === locat);
+            filterData = checkBoth;
         } else if (categ) {
-            filteredData = eventsData.filter(item => item.category === categ);
+            const resCateg = await getDataByCategory(categ);
+            filterData = resCateg.filter(item => item.category === categ);
         } else if (locat) {
-            filteredData = eventsData.filter(item => item.location === locat);
+            const resLocat = await getDataByLocation(locat);
+            filterData = resLocat.filter(item => item.location === locat);
         }
-
         setShowData(filteredData);
     };
 
