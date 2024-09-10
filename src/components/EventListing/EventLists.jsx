@@ -31,7 +31,7 @@ const EventLists = () => {
         }
 
         fetchData();
-    }, [])
+    }, [currentPage])
 
     useEffect(() => {
         if (!search) {
