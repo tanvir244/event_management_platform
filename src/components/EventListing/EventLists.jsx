@@ -6,7 +6,7 @@ import { getDataByCategory, getDataByLocation } from "@/customs/getData";
 
 const EventLists = () => {
     // pagination
-    const [currentPage, setCurrentPage] = useState(1);
+    const [currentPage, setCurrentPage] = useState(0);
 
     // =======
     const [eventsData, setEventsData] = useState([]);
@@ -15,9 +15,9 @@ const EventLists = () => {
     const [openClose, setOpenClose] = useState(false);
     const [categFilter, setCategFilter] = useState(null);
     const [locatFilter, setLocatFilter] = useState(null);
-    const [databyCateg, setDataByCateg] = useState([]);
-    const [databyLocat, setDataByLocat] = useState([]);
-    
+    const [cat, setCat] = useState([]);
+    const [lot, setLot] = useState([]);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -52,40 +52,42 @@ const EventLists = () => {
             setShowData([]);
         }
 
-    }, [eventsData, search, showData])
+    }, [eventsData, search])
+
+    useEffect(() => {
+        if (categFilter) {
+            const fetchCategory = async (categFilter) => {
+                const resCateg = await getDataByCategory(categFilter);
+                setCat(resCateg);
+            }
+            fetchCategory(categFilter);
+        }
+        if (locatFilter) {
+            const fetchLocation = async (locatFilter) => {
+                const resLocat = await getDataByLocation(locatFilter);
+                setLot(resLocat);
+            }
+            fetchLocation(locatFilter);
+        }
+    }, [categFilter, locatFilter])
+
 
     const filterData = async (categ, locat) => {
-        let filteredData = [];
-    
-        try {
-            let data;
-    
-            if (categ && locat) {
-                const [resCateg, resLocat] = await Promise.all([
-                    getDataByCategory(categ),
-                    getDataByLocation(locat)
-                ]);
-    
-                // Assuming you want to find common data between categ and locat
-                const matchedCateg = resCateg.filter(item => item.category === categ);
-                filteredData = matchedCateg.filter(item => resLocat.some(locItem => locItem.location === locat && locItem.id === item.id));
-            } else if (categ) {
-                const resCateg = await getDataByCategory(categ);
-                filteredData = resCateg.filter(item => item.category === categ);
-            } else if (locat) {
-                const resLocat = await getDataByLocation(locat);
-                filteredData = resLocat.filter(item => item.location === locat);
-            } else {
-                // Handle case when no filters are provided
-                // Possibly fetch all data and set to filteredData
-            }
-        } catch (error) {
-            console.error('Error filtering data', error);
-        }
-    
-        setShowData(filteredData);
-    };
+        let filteredData = eventsData;
 
+        if (categ && locat) {
+
+            const matchedCateg = cat.filter(item => item.category === categ);
+            const checkBoth = matchedCateg.filter(item => item.location === locat);
+            filteredData = checkBoth;
+        } else if (categ) {
+            filteredData = cat.filter(item => item.category === categ);
+        } else if (locat) {
+            filteredData = lot.filter(item => item.location === locat);
+        }
+        setShowData(filteredData);
+        console.log(cat);
+    };
 
     const sortedData = (sortType) => {
         if (sortType === "latest") {
@@ -104,8 +106,12 @@ const EventLists = () => {
             setCurrentPage(currentPage - 1);
         }
     }
-    console.log(currentPage);
-    console.log(eventsData);
+
+    useEffect(() => {
+        console.log('Updated showData:', showData);
+    }, [showData]);
+
+
     return (
         <div className="w-[90%] md:max-w-6xl mx-auto py-12">
             <h1 className="text-4xl font-bold text-center mb-6">Available Events</h1>
