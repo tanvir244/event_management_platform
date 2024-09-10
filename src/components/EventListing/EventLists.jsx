@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowDown } from "react-icons/fa6";
 import EventCart from "./EventCart";
+import { getDataByCategory, getDataByLocation } from "@/customs/getData";
 
 const EventLists = () => {
     // pagination
@@ -15,6 +16,8 @@ const EventLists = () => {
     const [openClose, setOpenClose] = useState(false);
     const [categFilter, setCategFilter] = useState(null);
     const [locatFilter, setLocatFilter] = useState(null);
+    const [databyCateg, setDataByCateg] = useState([]);
+    const [databyLocat, setDataByLocat] = useState([]);
     
     useEffect(() => {
         const fetchData = async () => {
@@ -32,6 +35,23 @@ const EventLists = () => {
 
         fetchData();
     }, [currentPage])
+
+
+    // fetch data by location and category 
+    useEffect(() => {
+        const fetchByLocatCateg = async () => {
+            const resCateg = await getDataByCategory(categFilter);
+            setDataByCateg(resCateg);
+        }
+        const fetchByLocatLocat = async () => {
+            const resLocat = await getDataByLocation(locatFilter);
+            setDataByLocat(resLocat);
+        }
+
+        fetchByLocatCateg(categFilter);
+        fetchByLocatCateg(locatFilter);
+    }, [categFilter, locatFilter])
+
 
     useEffect(() => {
         if (!search) {
@@ -74,9 +94,8 @@ const EventLists = () => {
         }
     };
 
+
     // paginaiton
-
-
     const nextPage = () => {
         setCurrentPage(currentPage + 1);
     }
@@ -106,17 +125,17 @@ const EventLists = () => {
                     </select>
                     <div className="text-white flex rounded-xl w-[260px] cursor-pointer">
                         <span onClick={() => setOpenClose(!openClose)} className="bg-gray-600 w-[60%] p-3 flex items-center gap-4"><span>Select</span> <FaArrowDown /></span>
-                        <span onClick={() => filterData(categFilter, locatFilter)} className="bg-black w-[40%] p-3 cursor-pointer hover:bg-[#001427]">Filter</span>
+                        <span onClick={() => filterData(databyCateg, databyLocat)} className="bg-black w-[40%] p-3 cursor-pointer hover:bg-[#001427]">Filter</span>
                     </div>
                     <div className={`absolute  top-[60px] right-[95px] bg-gray-600 py-4 px-2 ${openClose ? 'block' : 'hidden'}`} style={{ zIndex: 10 }}>
                         <div className="flex flex-col gap-2">
-                            <select onChange={(e) => setCategFilter(e.target.value)} className="bg-black py-2 px-6 text-white rounded-lg">
+                            <select value={categFilter} onChange={(e) => setCategFilter(e.target.value)} className="bg-black py-2 px-6 text-white rounded-lg">
                                 <option value="" disabled selected>Category</option>
                                 <option value="Conferences">Conferences</option>
                                 <option value="Workshops">Workshops</option>
                                 <option value="Concerts">Concerts</option>
                             </select>
-                            <select onChange={(e) => setLocatFilter(e.target.value)} className="bg-black py-2 px-6 text-white rounded-lg">
+                            <select value={locatFilter} onChange={(e) => setLocatFilter(e.target.value)} className="bg-black py-2 px-6 text-white rounded-lg">
                                 <option value="" disabled selected>Location</option>
                                 <option value="Bangladesh">Bangladesh</option>
                                 <option value="Switzerland">Switzerland</option>
@@ -136,7 +155,7 @@ const EventLists = () => {
                 }
             </div>
             {/* Pagination Controls */}
-            <div className="flex justify-center gap-8 mt-8">
+            <div className="flex justify-center gap-8 mt-12 mb-20">
                 <button
                     onClick={prevPage}
                     className="btn bg-gray-300 px-4 py-2 rounded"

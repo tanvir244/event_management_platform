@@ -43,3 +43,13 @@ export const getDataByCategory = async (category) => {
         return [];
     }
 }
+// Function to get events by location using Axios
+export const getDataByLocation = async (location) => {
+    try {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get_location/${location}`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+}
