@@ -4,6 +4,11 @@ import { FaArrowDown } from "react-icons/fa6";
 import EventCart from "./EventCart";
 
 const EventLists = () => {
+    // pagination
+    const [currentPage, setCurrentPage] = useState(1);
+
+
+    // =======
     const [eventsData, setEventsData] = useState([]);
     const [showData, setShowData] = useState([]);
     const [search, setSearch] = useState('');
@@ -29,7 +34,7 @@ const EventLists = () => {
     }, [])
 
     useEffect(() => {
-        if(!search){
+        if (!search) {
             setShowData(eventsData);
             return;
         }
@@ -37,10 +42,10 @@ const EventLists = () => {
         const names = showData.map((event) => event.name.toLowerCase());
         const searchItems = names.includes(search.toLowerCase());
         const filteredEvents = showData.filter(event => event.name.toLowerCase().includes(search.toLowerCase()))
-        
-        if(filteredEvents.length > 0){
+
+        if (filteredEvents.length > 0) {
             setShowData(filteredEvents);
-        } else{
+        } else {
             setShowData([]);
         }
 
@@ -69,6 +74,20 @@ const EventLists = () => {
         }
     };
 
+    // paginaiton
+    
+
+    const nextPage = () => {
+        if(currentPage) {
+            setCurrentPage(currentPage + 1);
+        }
+    }
+    const prevPage = () => {
+        if(currentPage > 0) {
+            setCurrentPage(currentPage - 1);
+        }
+    }
+    console.log(currentPage);
     return (
         <div className="w-[90%] md:max-w-6xl mx-auto py-12">
             <h1 className="text-4xl font-bold text-center mb-6">Available Events</h1>
@@ -116,6 +135,22 @@ const EventLists = () => {
                         <EventCart key={index} event={event} />
                     ))
                 }
+            </div>
+            {/* Pagination Controls */}
+            <div className="flex justify-center gap-8 mt-8">
+                <button
+                    onClick={prevPage}
+                    className="btn bg-gray-300 px-4 py-2 rounded"
+                >
+                    Previous
+                </button>
+                <span className="flex items-center font-bold text-lg">{currentPage}</span>
+                <button
+                    onClick={nextPage}
+                    className="btn bg-gray-300 px-4 py-2 rounded"
+                >
+                    Next
+                </button>
             </div>
         </div>
     );
