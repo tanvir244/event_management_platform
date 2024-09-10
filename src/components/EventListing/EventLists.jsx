@@ -63,13 +63,13 @@ const EventLists = () => {
             
             const matchedCateg = resCateg.filter(item => item.category === categ);
             const checkBoth = matchedCateg.filter(item => item.location === locat);
-            filterData = checkBoth;
+            filteredData = checkBoth;
         } else if (categ) {
             const resCateg = await getDataByCategory(categ);
-            filterData = resCateg.filter(item => item.category === categ);
+            filteredData = resCateg.filter(item => item.category === categ);
         } else if (locat) {
             const resLocat = await getDataByLocation(locat);
-            filterData = resLocat.filter(item => item.location === locat);
+            filteredData = resLocat.filter(item => item.location === locat);
         }
         setShowData(filteredData);
     };
