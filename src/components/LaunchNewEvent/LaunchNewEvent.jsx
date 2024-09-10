@@ -69,12 +69,13 @@ const LaunchNewEvent = () => {
         }
         // reset 
         event.target.reset();
+        setContent('');
     }
 
     return (
-        <div className='w-[90%] md:max-w-6xl mx-auto my-12'>
+        <div className='w-[90%] lg:max-w-6xl mx-auto my-12'>
             <h1 className='text-5xl font-bold text-center mb-6'>Launch New Event</h1>
-            <form onSubmit={handleForm} className='w-[780px] mx-auto space-y-4 bg-black text-white py-16 px-12 rounded-xl'>
+            <form onSubmit={handleForm} className='w-full md:w-[780px] mx-auto space-y-4 bg-black text-white py-16 px-12 rounded-xl'>
                 <div className='flex flex-col md:flex-row gap-4'>
                     <div className='w-full flex flex-col'>
                         <label>Name</label>
@@ -121,7 +122,7 @@ const LaunchNewEvent = () => {
                     <label>Event Photo</label>
                     <input type="file" name='photo' className='py-2 px-4 bg-[#fefae0] text-black rounded-lg' required/>
                 </div>
-                <div className='w-full flex flex-col text-black'>
+                <div className='w-full flex flex-col text-black mb-24'>
                     <label>Description</label>
                     <JoditEditor
                         ref={editor}
@@ -132,7 +133,7 @@ const LaunchNewEvent = () => {
                         }}
                     />
                 </div>
-                <button className='btn w-full bg-white text-black'>Submit</button>
+                <button className='btn w-full bg-white text-black py-2 font-bold rounded-2xl hover:bg-slate-300'>Submit</button>
             </form>
         </div>
     );
