@@ -15,11 +15,11 @@ const EventLists = () => {
     const [openClose, setOpenClose] = useState(false);
     const [categFilter, setCategFilter] = useState(null);
     const [locatFilter, setLocatFilter] = useState(null);
-    console.log(search);
+    
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get_all_events`);
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get_events/${currentPage}`);
                 const data = await response.json();
                 setEventsData(data);
                 setShowData(data);
@@ -75,19 +75,18 @@ const EventLists = () => {
     };
 
     // paginaiton
-    
+
 
     const nextPage = () => {
-        if(currentPage) {
-            setCurrentPage(currentPage + 1);
-        }
+        setCurrentPage(currentPage + 1);
     }
     const prevPage = () => {
-        if(currentPage > 0) {
+        if (currentPage > 0) {
             setCurrentPage(currentPage - 1);
         }
     }
     console.log(currentPage);
+    console.log(eventsData);
     return (
         <div className="w-[90%] md:max-w-6xl mx-auto py-12">
             <h1 className="text-4xl font-bold text-center mb-6">Available Events</h1>
