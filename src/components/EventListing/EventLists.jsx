@@ -55,24 +55,57 @@ const EventLists = () => {
     }, [eventsData, search, showData])
 
     const filterData = async (categ, locat) => {
-        let filteredData;
-
-        if (categ && locat) {
-            const resCateg = await getDataByCategory(categ);
-            const resLocat = await getDataByLocation(locat);
-            
-            const matchedCateg = resCateg.filter(item => item.category === categ);
-            const checkBoth = matchedCateg.filter(item => item.location === locat);
-            filteredData = checkBoth;
-        } else if (categ) {
-            const resCateg = await getDataByCategory(categ);
-            filteredData = resCateg.filter(item => item.category === categ);
-        } else if (locat) {
-            const resLocat = await getDataByLocation(locat);
-            filteredData = resLocat.filter(item => item.location === locat);
+        let filteredData = [];
+    
+        try {
+            let data;
+    
+            if (categ && locat) {
+                const [resCateg, resLocat] = await Promise.all([
+                    getDataByCategory(categ),
+                    getDataByLocation(locat)
+                ]);
+    
+                // Assuming you want to find common data between categ and locat
+                const matchedCateg = resCateg.filter(item => item.category === categ);
+                filteredData = matchedCateg.filter(item => resLocat.some(locItem => locItem.location === locat && locItem.id === item.id));
+            } else if (categ) {
+                const resCateg = await getDataByCategory(categ);
+                filteredData = resCateg.filter(item => item.category === categ);
+            } else if (locat) {
+                const resLocat = await getDataByLocation(locat);
+                filteredData = resLocat.filter(item => item.location === locat);
+            } else {
+                // Handle case when no filters are provided
+                // Possibly fetch all data and set to filteredData
+            }
+        } catch (error) {
+            console.error('Error filtering data', error);
         }
+    
         setShowData(filteredData);
     };
+    
+
+    // const filterData = async (categ, locat) => {
+    //     let filteredData;
+
+    //     if (categ && locat) {
+    //         const resCateg = await getDataByCategory(categ);
+    //         const resLocat = await getDataByLocation(locat);
+            
+    //         const matchedCateg = resCateg.filter(item => item.category === categ);
+    //         const checkBoth = matchedCateg.filter(item => item.location === locat);
+    //         filteredData = checkBoth;
+    //     } else if (categ) {
+    //         const resCateg = await getDataByCategory(categ);
+    //         filteredData = resCateg.filter(item => item.category === categ);
+    //     } else if (locat) {
+    //         const resLocat = await getDataByLocation(locat);
+    //         filteredData = resLocat.filter(item => item.location === locat);
+    //     }
+    //     setShowData(filteredData);
+    // };
 
     const sortedData = (sortType) => {
         if (sortType === "latest") {
@@ -81,7 +114,6 @@ const EventLists = () => {
             console.log(sortByDate);
         }
     };
-
 
     // paginaiton
     const nextPage = () => {
