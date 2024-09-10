@@ -30,6 +30,16 @@ const LaunchNewEvent = () => {
         const photoFile = form.photo.files[0];
         const description = content;
 
+         // Custom validation for content
+         if (!description) {
+            Swal.fire({
+                icon: "error",
+                title: "Description is required",
+                text: "Please add a description for the event",
+            });
+            return;
+        }
+
         try {
             // upload image to imgbb and than get an url
             const formData = new FormData();
@@ -57,7 +67,8 @@ const LaunchNewEvent = () => {
         } catch (error) {
             console.log(error);
         }
-
+        // reset 
+        event.target.reset();
     }
 
     return (
@@ -67,21 +78,21 @@ const LaunchNewEvent = () => {
                 <div className='flex flex-col md:flex-row gap-4'>
                     <div className='w-full flex flex-col'>
                         <label>Name</label>
-                        <input type="text" name='name' className='py-2 px-4 text-black rounded-lg' placeholder='name' />
+                        <input type="text" name='name' className='py-2 px-4 text-black rounded-lg' placeholder='name' required/>
                     </div>
                     <div className='w-full flex flex-col'>
                         <label>Date</label>
-                        <input type="date" name='date' className='py-2 px-4 text-black rounded-lg' placeholder='Event Date' />
+                        <input type="date" name='date' className='py-2 px-4 text-black rounded-lg' placeholder='Event Date' required/>
                     </div>
                 </div>
                 <div className='flex flex-col md:flex-row gap-4'>
                     <div className='w-full flex flex-col'>
                         <label>Time</label>
-                        <input type="time" name='time' className='py-2 px-4 text-black rounded-lg' placeholder='Event Time' />
+                        <input type="time" name='time' className='py-2 px-4 text-black rounded-lg' placeholder='Event Time' required/>
                     </div>
                     <div className='w-full flex flex-col'>
                         <label>Category</label>
-                        <select value={categ} onChange={(e) => setCateg(e.target.value)} className='text-black py-2 px-4 rounded-lg'>
+                        <select value={categ} onChange={(e) => setCateg(e.target.value)} className='text-black py-2 px-4 rounded-lg' required>
                             <option value="" disabled>select category</option>
                             <option value="Conferences">Conferences</option>
                             <option value="Workshops">Workshops</option>
@@ -92,11 +103,11 @@ const LaunchNewEvent = () => {
                 <div className='flex flex-col md:flex-row gap-4'>
                     <div className='w-full md:w-1/2 flex flex-col'>
                         <label>Ticket Price</label>
-                        <input type="number" name='price' className='py-3 px-4 text-black rounded-lg' placeholder='name' />
+                        <input type="number" name='price' className='py-3 px-4 text-black rounded-lg' placeholder='name' required/>
                     </div>
                     <div className='w-full md:w-1/2 flex flex-col'>
                         <label>Location</label>
-                        <select value={locat} onChange={(e) => setLocat(e.target.value)} className='text-black py-2 px-4 rounded-lg'>
+                        <select value={locat} onChange={(e) => setLocat(e.target.value)} className='text-black py-2 px-4 rounded-lg' required>
                             <option value="" disabled>select location</option>
                             <option value="Bangladesh">Bangladesh</option>
                             <option value="Switzerland">Switzerland</option>
@@ -108,7 +119,7 @@ const LaunchNewEvent = () => {
                 </div>
                 <div className='w-full md:w-1/2 flex flex-col'>
                     <label>Event Photo</label>
-                    <input type="file" name='photo' className='py-2 px-4 bg-[#fefae0] text-black rounded-lg' />
+                    <input type="file" name='photo' className='py-2 px-4 bg-[#fefae0] text-black rounded-lg' required/>
                 </div>
                 <div className='w-full flex flex-col text-black'>
                     <label>Description</label>
@@ -121,7 +132,7 @@ const LaunchNewEvent = () => {
                         }}
                     />
                 </div>
-                <button className='btn w-full bg-black text-white'>Submit</button>
+                <button className='btn w-full bg-white text-black'>Submit</button>
             </form>
         </div>
     );

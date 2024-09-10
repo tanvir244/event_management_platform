@@ -9,7 +9,6 @@ const CategoryByEvents = ({category}) => {
     useEffect(() => {
         const fetchedData = async () => {
             const res = await getDataByCategory(category);
-            // const data = res.json();
             setDataByCateg(res); 
             // console.log(data);
         } 
