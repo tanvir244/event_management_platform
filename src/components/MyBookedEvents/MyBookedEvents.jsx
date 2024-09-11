@@ -33,7 +33,7 @@ const MyBookedEvents = () => {
                 try {
                     const eventsData = await Promise.all(
                         bookedIds.map(async (event) => {
-                            const res = await fetch(`http://localhost:3000/api/single_event/${event.eventId}`);
+                            const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/single_event/${event.eventId}`);
                             const data = await res.json();
                             return data;
                         })
