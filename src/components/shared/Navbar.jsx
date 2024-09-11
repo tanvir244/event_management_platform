@@ -25,7 +25,7 @@ const Navbar = () => {
     }
 
     return (
-        <div className='relative bg-[#001427] p-6'>
+        <div className='relative bg-[#001427] p-6 z-[20]'>
             <div className='flex flex-col lg:flex-row gap-[24px] lg:gap-0 justify-between items-center max-w-6xl mx-auto'>
                 <div className='w-full lg:w-[30%] text-center'>
                     <h1 className='text-4xl font-bold text-white'>Event Wave</h1>
@@ -43,7 +43,7 @@ const Navbar = () => {
                             </li>
                             <li><Link href={'/my_booked_events'}>Booked List</Link></li>
                         </ul>
-                        <ul className={`absolute left-[70px] md:left-[130px] lg:left-[580px] bottom-[-150px] w-[210px] bg-[#001427] rounded-md px-4 py-4 text-white text-sm ${category ? 'block' : 'hidden'}`}>
+                        <ul className={`absolute left-[70px] md:left-[130px] lg:left-[580px] bottom-[-150px] w-[210px] z-[20] bg-[#001427] rounded-md px-4 py-4 text-white text-sm ${category ? 'block' : 'hidden'}`}>
                             <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/Conferences'}>Conferences</Link></li>
                             <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/Workshops'}>Workshops</Link></li>
                             <li onClick={offCategory} className='py-2 px-3 hover:bg-gray-800 rounded-md cursor-pointer'><Link href={'/events/Concerts'}>Concerts</Link></li>
@@ -68,7 +68,7 @@ const Navbar = () => {
                                     />
                                 </div>
                             </div>
-                            <ul style={{ zIndex: 1 }} className={`absolute right-[38px] md:right-[40px] lg:right-[160px] bottom-[-116px] w-[210px] bg-[#001427] rounded-md px-4 py-4 text-white text-sm ${profilee ? 'block' : 'hidden'}`}>
+                            <ul style={{ zIndex: 20 }} className={`absolute right-[38px] md:right-[40px] lg:right-[160px] bottom-[-116px] w-[210px] bg-[#001427] rounded-md px-4 py-4 text-white text-sm ${profilee ? 'block' : 'hidden'}`}>
                                 {
                                     session ? (
                                         <>
