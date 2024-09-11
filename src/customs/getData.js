@@ -64,3 +64,14 @@ export const getSliderData = async () => {
         return [];
     }
 }
+
+// Function to get traditional data
+export const getTraditionalFestival = async () => {
+    try {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get_traditinal_festivals`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+}
