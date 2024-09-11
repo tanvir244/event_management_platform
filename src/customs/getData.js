@@ -53,3 +53,14 @@ export const getDataByLocation = async (location) => {
         return [];
     }
 }
+
+// Function to get slider data
+export const getSliderData = async () => {
+    try {
+        const res = await axios.get(`${process.env.NEXT_PUBLIC_BASE_URL}/api/get_slider_data`);
+        return res.data;
+    } catch (error) {
+        console.log(error);
+        return [];
+    }
+}

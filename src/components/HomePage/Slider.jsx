@@ -1,31 +1,46 @@
 "use client"
+import { getSliderData } from '@/customs/getData';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
 const Slider = () => {
+    const [sliderData, setSliderData] = useState([]);
+    const [expected, setExpected] = useState({});
     const [currentIndex, setCurrentIndex] = useState(0);
-    const totalLength = sliderData.length;
 
+    const { image, title, short_descrip } = expected;
+
+    // fetching data
+    useEffect(() => {
+        const fetchData = async () => {
+            const resp = await getSliderData();
+            setSliderData(resp);
+            setExpected(resp[currentIndex]);
+        }
+        fetchData();
+    }, [currentIndex]);
+
+    // prev
     const prevSlide = () => {
-        if (currentIndex.length > 0) {
+        if (currentIndex > 0) {
             setCurrentIndex(currentIndex - 1);
         }
     }
 
+    // next
     const nextSlide = () => {
-        if(currentIndex.length < totalLength){
-            currentIndex(currentIndex + 1);
+        if (currentIndex < sliderData.length - 1) {
+            setCurrentIndex(currentIndex + 1);
         }
     }
-    console.log(currentIndex);
 
     return (
         <div className='h-[100vh] my-8 md:p-4 lg:p-12 z-[-1]'>
             {/* Image */}
             <Image
-                src={'https://i.ibb.co/Sm9xRq1/blood-donation-56.jpg'}
+                src={image || 'https://i.ibb.co/Sm9xRq1/blood-donation-56.jpg'}
                 alt='photo'
                 layout='fill'
                 objectFit='cover'
@@ -49,8 +64,8 @@ const Slider = () => {
                     </Link>
                 </div>
                 <div className='w-[320px] lg:w-[480px] mx-auto pb-12'>
-                    <h1 className='text-2xl md:text-4xl font-bold text-yellow-300 mb-4'>See Popular Concerts Next</h1>
-                    <p className='text-gray-200 '>To ensure the background image spans the full width of its container, you can use the Image component from Next.js with the fill prop and set objectFit: cover.</p>
+                    <h1 className='text-2xl md:text-4xl font-bold text-yellow-300 mb-4'>{title || 'See Popular Concerts Next'}</h1>
+                    <p className='text-gray-200'>{short_descrip || 'Don\'t miss the upcoming events and concerts happening soon.'}</p>
                 </div>
             </div>
             <div className='absolute bottom-4 md:bottom-16 right-4 md:right-24 flex gap-6'>
@@ -60,24 +75,5 @@ const Slider = () => {
         </div>
     );
 };
-
-const sliderData = [
-    {
-        "image": "Sm9xRq1/blood-donation-56", // Adjust based on actual image URLs
-        "title": "Popular Blood Donation Drive",
-        "short_descrip": "Join us to donate blood and save lives!"
-    },
-    {
-        "image": "some-other-image",
-        "title": "Community Workshop",
-        "short_descrip": "Participate in our community workshops."
-    },
-    {
-        "image": "another-image",
-        "title": "Upcoming Concert",
-        "short_descrip": "Don't miss our exciting concert events."
-    },
-];
-
 
 export default Slider;
