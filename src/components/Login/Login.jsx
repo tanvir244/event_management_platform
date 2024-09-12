@@ -37,11 +37,11 @@ const Login = () => {
 
     return (
         <div className='max-w-6xl mx-auto flex flex-col lg:flex-row justify-between px-6 md:px-0 py-16 lg:py-28 gap-12 lg:gap-0'>
-            <div className='space-y-1 lg:space-y-4 text-center'>
+            <div className='text-center md:text-start'>
                 <h1 className='text-5xl font-bold lg:mt-16'>Please Login</h1>
-                <p className='text-lg'>Let us know your identity please!</p>
+                <p className='text-lg mt-4'>Let us know your identity please!</p>
             </div>
-            <div className="w-full md:w-[520px] mx-auto bg-[#0d1b2a] text-white rounded-lg px-12 py-16">
+            <div className="w-full md:w-[520px] mx-auto bg-[#0d1b2a] text-white rounded-lg px-8 md:px-12 py-12 md:py-16">
                 <form onSubmit={handleLogin}>
                     <div className="flex flex-col gap-2">
                         <div>

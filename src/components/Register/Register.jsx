@@ -74,11 +74,11 @@ const Register = () => {
 
     return (
         <div className='max-w-6xl mx-auto flex flex-col lg:flex-row justify-between px-6 md:px-0 py-16 lg:py-28 gap-12 lg:gap-0'>
-            <div className='space-y-1 lg:space-y-4 w-[360px] mx-auto'>
+            <div className='space-y-4 w-full md:w-[360px] mx-auto'>
                 <h1 className='text-5xl font-bold lg:mt-16'>Register Now</h1>
                 <p className='text-lg'>If you are first time here, please register with your Email and Pssoword including addintonal required information.</p>
             </div>
-            <div className="w-full md:w-[580px] mx-auto bg-[#0d1b2a] text-white rounded-lg px-12 py-20">
+            <div className="w-full md:w-[580px] mx-auto bg-[#0d1b2a] text-white rounded-lg px-8 md:px-12 py-12 md:py-16">
                 {/* <h1 className="text-center font-semibold text-5xl mb-12">Register Now</h1> */}
                 <form onSubmit={handleRegister}>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

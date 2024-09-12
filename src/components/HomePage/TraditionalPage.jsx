@@ -35,7 +35,7 @@ const TraditionalPage = () => {
                     {/* Content inside image */}
                     <div className="absolute top-12 left-8">
                         <h1 className='text-2xl font-bold text-yellow-300 mb-2'>{item.title}</h1>
-                        <p className='text-white mt-2 w-[320px] leading-5'>{item.description}</p>
+                        <p className='text-white mt-2 w-full pr-4 leading-5'>{item.description}</p>
                     </div>
                 </div>
             ))}

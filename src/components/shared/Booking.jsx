@@ -38,6 +38,7 @@ const Booking = ({ eventId }) => {
     const handleBooking = async () => {
         if (session.status === 'unauthenticated') {
             router.push('/login');
+            return;
         }
 
         // booking info 

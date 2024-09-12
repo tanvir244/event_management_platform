@@ -63,7 +63,7 @@ const Slider = () => {
                         <button className='btn bg-white w-full py-2 text-[#001427] rounded-lg font-bold'>Concerts</button>
                     </Link>
                 </div>
-                <div className='w-[360px] lg:w-[480px] mx-auto pl-10'>
+                <div className='w-full lg:w-[480px] mx-auto pl-10'>
                     <h1 className='text-2xl md:text-4xl font-bold text-yellow-300 mb-4'>{title || 'See Popular Concerts Next'}</h1>
                     <p className='text-gray-200'>{short_descrip || 'Don\'t miss the upcoming events and concerts happening soon.'}</p>
                 </div>

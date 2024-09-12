@@ -3,8 +3,8 @@ import React from 'react';
 
 const OfferPage = () => {
     return (
-        <div className='w-[90%] md:max-w-6xl mx-auto bg-[#001427] text-white py-12 md:py-20 px-8 md:px-12 flex flex-col md:flex-row justify-between rounded-xl my-16 gap-8 z-[-1]'>
-            <div className='relative w-full md:w-[480px] h-[320px]'>
+        <div className='w-[90%] md:max-w-6xl mx-auto bg-[#001427] text-white py-8 lg:py-12 px-8 lg:px-12 flex flex-col lg:flex-row justify-between rounded-xl my-16 gap-8 z-[-1]'>
+            <div className='relative w-full lg:w-[530px] h-[250px] md:h-[320px]'>
                 <Image
                     src={'https://i.ibb.co/2SP4q4p/pexels-fotios-photos-709486.jpg'}
                     alt='offer'
